@@ -1,0 +1,56 @@
+{% if ingest_id %}
+    <div class="mt-10" data-chat>
+        <div class="relative">
+            <div class="w-full h-full absolute inset-0 bg-gray-900 rounded-xl translate-y-2 translate-x-2"></div>
+            <div class="bg-[#e5f6ff] rounded-xl border-[3px] border-gray-900 p-6 relative z-20 space-y-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-900">Chat with LLM</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- API Key -->
+                    <div>
+                        <label for="llm-api-key" class="block text-sm font-medium text-gray-900">Your API Key</label>
+                        <input type="password" id="llm-api-key" placeholder="sk-..." class="w-full p-2 mt-1 border-[3px] border-gray-900 rounded text-sm focus:outline-none bg-white" />
+                    </div>
+
+                    <!-- Model Selector -->
+                    <div>
+                        <label for="llm-model" class="block text-sm font-medium text-gray-900">Select LLM Model</label>
+                        <select id="llm-model" class="w-full p-2 mt-1 border-[3px] border-gray-900 rounded text-sm focus:outline-none bg-white">
+                            <option value="gemini-2.0-flash">Gemini-2.0</option>
+                            <option value="gpt-4">GPT-4</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            <option value="mistral-7b">Mistral-7B</option>
+                            <option value="deepseek-coder">DeepSeek Coder</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- User Input -->
+                    <div>
+                        <label for="chat-input" class="block text-sm font-medium text-gray-900">Ask something about this repo:</label>
+                        <textarea id="chat-input" rows="4" placeholder="e.g., What does this repo do?" class="w-full p-4 mt-1 bg-white border-[3px] border-gray-900 rounded font-mono text-sm resize-y focus:outline-none"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button onclick="handleLLMSubmit('{{ ingest_id }}')" class="px-6 py-2 bg-[#5dc3f5] border-[3px] border-gray-900 text-gray-900 rounded hover:-translate-y-px hover:-translate-x-px transition-transform">
+                        Submit
+                        </button>
+
+                    </div>
+
+                    <!-- Chat Response -->
+                    <div id="chat-response" class="p-4 mt-2 bg-white border-[3px] border-gray-900 rounded font-mono text-sm min-h-[100px] whitespace-pre-wrap">
+                        <!-- LLM response will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+<script src="/static/js/llm_chat.js"></script>
