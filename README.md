@@ -18,8 +18,8 @@
 </a>
 
 <!-- Discord -->
-<a href="https://discord.com/invite/zerRaGK9EC">
-  <img src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/zerRaGK9EC" alt="Discord" />
+<a href="https://discord.com/invite/V987JkWe">
+  <img src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/V987JkWe" alt="Discord" />
 </a>
 
 
@@ -112,7 +112,7 @@ We welcome and encourage contributions! Whether you’re fixing a bug, adding fe
 
 ### How to Contribute
 
-1. 💡 Share feedback and ideas on [Discord](https://discord.com/invite/zerRaGK9EC)
+1. 💡 Share feedback and ideas on [Discord](https://discord.com/invite/V987JkWe)
 2. 🐞 Open an issue to report bugs or request features
 3. 📤 Submit a pull request:
 
@@ -156,7 +156,7 @@ See the [LICENSE](https://github.com/raselmeya94/gitwithqa/blob/main/LICENSE) fi
 
 Have questions or want to collaborate? Join our community:
 
-* 💬 [Discord Server](https://discord.com/invite/zerRaGK9EC)
+* 💬 [Discord Server](https://discord.com/invite/V987JkWe)
 * 🐙 [GitHub Discussions](https://github.com/raselmeya94/gitwithqa/discussions)
 
 ---
