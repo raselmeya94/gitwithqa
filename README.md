@@ -1,20 +1,14 @@
-[![Image](./docs/frontpage.png "GitIngest main page")](https://gitingest.com)
+[![Image](./docs/frontpage.png "GitWithQA main page")](https://gitwithqa.com)
 
 <!-- License -->
-<a href="https://github.com/cyclotruc/gitingest/blob/main/LICENSE">
+<a href="https://github.com/raselmeya94/gitwithqa/blob/main/LICENSE">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
 </a>
-<!-- PyPI version -->
-<a href="https://badge.fury.io/py/gitingest">
-  <img src="https://badge.fury.io/py/gitingest.svg" alt="PyPI version" />
-</a>
-<!-- Downloads -->
-<a href="https://pepy.tech/project/gitingest">
-  <img src="https://pepy.tech/badge/gitingest" alt="Downloads" />
-</a>
+
+
 <!-- GitHub issues -->
-<a href="https://github.com/cyclotruc/gitingest/issues">
-  <img src="https://img.shields.io/github/issues/cyclotruc/gitingest" alt="GitHub issues" />
+<a href="https://github.com/raselmeya94/gitwithqa/issues">
+  <img src="https://img.shields.io/github/issues/raselmeya94/gitwithqa" alt="GitHub issues" />
 </a>
 <!-- Black code style -->
 <a href="https://github.com/psf/black">
@@ -26,131 +20,151 @@
   <img src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/zerRaGK9EC" alt="Discord" />
 </a>
 
-# GitIngest
 
-Turn any Git repository into a prompt-friendly text ingest for LLMs.
+# GitWithQA
 
-You can also replace `hub` with `ingest` in any github url to access the coresponding digest
+**GitWithQA** enhances any GitHub repository by turning it into an interactive, intelligent **Q\&A knowledge base**—perfect for developers, teams, and LLM applications.
 
-[gitingest.com](https://gitingest.com)
+Now supercharged with **LLM chat integration**, GitWithQA allows users to **ask questions, explore code, and discuss functionality directly within the platform**—no extra setup required. Whether you're trying to understand what a specific file does, what a function is responsible for, or simply exploring the codebase, GitWithQA makes it seamless and intuitive.
 
-## 🚀 Features
+🔗 **Try it live**: [gitwithqa.com](https://gitwithqa.com)
+✨ **Shortcut**: Just replace `hub` with `withqa` in any GitHub URL to get instant Q\&A insights!
 
-- **Easy code context**: Get a text digest from a git repository URL or a directory
-- **Smart Formatting**: Optimized output format for LLM prompts
-- **Statistics about**:
-  - File and directory structure
-  - Size of the extract
-  - Token count
-- **CLI tool**: Run it as a command (Currently on Linux only)
-- **Python package**: Import it in your code
+---
 
-## 📦 Installation
+## 🚀 What’s New
 
-``` bash
-pip install gitingest
-```
+* 💬 **Interactive LLM Chat**: Instantly ask questions and get answers from the full merged repository content. Perfect for code understanding, documentation lookup, and general discussion.
+* 🔎 **Smart Context Awareness**: Get meaningful answers based on function roles, file responsibilities, and more.
+* 🎯 **RAG Integration (Coming Soon)**: Enhanced **Retrieval-Augmented Generation** will ensure even more **accurate, context-aware answers** to your queries.
+* 📦 **Powered by gitingest**: Leverages gitingest's structured file merge and preprocessing to enable deep understanding across the codebase.
 
-## 💡 Command Line usage
+---
 
-The `gitingest` command line tool allows you to analyze codebases and create a text dump of their contents.
+## 🔧 Core Features
 
-```bash
-# Basic usage
-gitingest /path/to/directory
+* 🔍 Extracts Q\&A pairs from code, docstrings, markdown, and comments
+* 🧠 Chat-ready interface for real-time conversation with your repo
+* ⚙️ Token-aware chunking using [`tiktoken`](https://github.com/openai/tiktoken)
+* 🧱 Built to integrate into any RAG pipeline
+* 🌐 Frontend with Tailwind CSS
+* ⚡ FastAPI backend
+* 📊 Usage analytics via [APIAnalytics.dev](https://apianalytics.dev)
 
-# From url
-gitingest https://github.com/cyclotruc/gitingest
+---
 
-# See more options
-gitingest --help
-```
 
-This will write the digest in a text file (default `digest.txt`) in your current working directory.
+## 🛠 Tech Stack
 
-## 🐛 Python package usage
+| Layer      | Technology         |
+|------------|--------------------|
+| Frontend   | Tailwind CSS       |
+| Backend    | FastAPI            |
+| Tokenizer  | OpenAI `tiktoken`  |
+| Analytics  | API Analytics      |
+| Style Guide| `black`            |
+| LLM        | `OpenAI`, `Gemini` |
+---
 
-```python
-from gitingest import ingest
+## ⚙️ Getting Started
 
-summary, tree, content = ingest("path/to/directory")
-
-# or from URL
-summary, tree, content = ingest("https://github.com/cyclotruc/gitingest")
-```
-
-By default, this won't write a file but can be enabled with the `output` argument
-
-## 🛠️ Using
-
-- Tailwind CSS - Frontend
-- [FastAPI](https://github.com/fastapi/fastapi) - Backend framework
-- [tiktoken](https://github.com/openai/tiktoken) - Token estimation
-- [apianalytics.dev](https://www.apianalytics.dev/) - Simple Analytics
-
-## 🌐 Self-host
-
-1. Build the image:
-
-``` bash
-docker build -t gitingest .
-```
-
-2. Run the container:
-
-``` bash
-docker run -d --name gitingest -p 8000:8000 gitingest
-```
-
-The application will be available at `http://localhost:8000`
-Ensure environment variables are set before running the application or deploying it via Docker.
-
-## ✔️ Contributing
-
-Contributions are welcome!
-
-Gitingest aims to be friendly for first time contributors, with a simple python and html codebase. If you need any help while working with the code, reach out to us on [discord](https://discord.com/invite/zerRaGK9EC)
-
-### Ways to contribute
-
-1. Provide your feedback and ideas on discord
-2. Open an Issue on github to report a bug
-3. Create a Pull request
-   - Fork the repository
-   - Make your changes and test them locally
-   - Open a pull request for review and feedback
-
-### 🔧 Local dev
-
-#### Environment Configuration
-
-- **`ALLOWED_HOSTS`**: Specify allowed hostnames for the application. Default: `"gitingest.com,*.gitingest.com,gitdigest.dev,localhost"`.
-You can configure the application using the following environment variables:
+### 1. Clone the Repository
 
 ```bash
-ALLOWED_HOSTS="gitingest.local,localhost"
-```
+git clone https://github.com/raselmeya94/gitwithqa.git
+cd gitwithqa
+````
 
-#### Run locally
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/cyclotruc/gitingest.git
-cd gitingest
-```
-
-2. Install dependencies
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the application:
+### 3. Run the Application Locally
 
 ```bash
 cd src
 uvicorn main:app --reload
 ```
 
-The frontend will be available at `localhost:8000`
+Visit `http://localhost:8000` to view the application.
+
+---
+
+## 🌍 Configuration
+
+### Environment Variables
+
+Set your environment variables to configure the host:
+
+```bash
+ALLOWED_HOSTS="gitwithqa.local,localhost"
+```
+
+---
+
+## 🤝 Contributing
+
+We welcome and encourage contributions! Whether you’re fixing a bug, adding features, or improving documentation, your help is appreciated.
+
+### How to Contribute
+
+1. 💡 Share feedback and ideas on [Discord](https://discord.com/invite/zerRaGK9EC)
+2. 🐞 Open an issue to report bugs or request features
+3. 📤 Submit a pull request:
+
+   * Fork the repo
+   * Make your changes
+   * Test locally
+   * Submit a PR for review
+
+### Code Guidelines
+
+* Follow [Black](https://github.com/psf/black) for formatting
+* Use descriptive commit messages
+* Keep PRs focused and well-scoped
+
+---
+
+## 💡 Use Cases
+
+* Fine-tune LLMs on your organization’s codebase
+* Enhance RAG applications with Git-aware knowledge
+* Automatically generate developer FAQs
+* Build code-aware assistants or bots
+
+---
+
+## ⚠️ Note
+
+> **GitWithQA** is an experimental fork of [**gitingest**](https://github.com/raselmeya94/gitingest).
+> Some internal folder names and structures still reference `gitingest`. These will be progressively updated to match the GitWithQA branding and scope.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+See the [LICENSE](https://github.com/raselmeya94/gitwithqa/blob/main/LICENSE) file for details.
+
+---
+
+## 🌐 Community
+
+Have questions or want to collaborate? Join our community:
+
+* 💬 [Discord Server](https://discord.com/invite/zerRaGK9EC)
+* 🐙 [GitHub Discussions](https://github.com/raselmeya94/gitwithqa/discussions)
+
+---
+
+## ✨ Inspiration
+
+GitWithQA was created to bridge the gap between developer code and AI understanding by turning real-world repositories into structured training data for LLMs and RAG systems.
+
+---
+
+Built with ❤️ by [@raselmeya94](https://github.com/raselmeya94)
+
+

@@ -39,9 +39,9 @@ async def index_post(
         pattern,
         is_index=True,
     )
-@router.get("/llm_chat/{ingest_id}", response_class=HTMLResponse)
-async def llm_chat_ui(request: Request, ingest_id: str):
-    return templates.TemplateResponse("chat.jinja", {
-        "request": request,
-        "ingest_id": ingest_id
-    })
+# @router.get("/llm_chat/{ingest_id}", response_class=HTMLResponse)
+# async def llm_chat_ui(request: Request, ingest_id: str):
+#     return templates.TemplateResponse("chat.jinja", {
+#         "request": request,
+#         "ingest_id": ingest_id
+#     })
