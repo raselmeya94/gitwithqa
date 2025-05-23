@@ -112,7 +112,8 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from routers import download, dynamic, index, read_text
+from routers import download, dynamic, index, llm_chat_router
+
 from server_utils import limiter
 
 # Load environment variables
@@ -148,17 +149,38 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # ✅ Setup Trusted Host Middleware
+
+# ✅ Setup Trusted Host Middleware
 default_allowed_hosts = ["*"]
 allowed_hosts = os.getenv("ALLOWED_HOSTS", "*").split(",")
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 
-# ✅ Include routers
-logger.info("🔌 Including routers...")
+# Improved route debugging
+@app.on_event("startup")
+async def debug_routes():
+    logger.info("🛣️ Registered routes:")
+    for route in app.routes:
+        if hasattr(route, "path"):
+            # Handle both regular routes and Mount objects
+            if hasattr(route, "methods"):
+                logger.info(f"Route: {route.path} - Methods: {route.methods}")
+            elif hasattr(route, "name"):
+                logger.info(f"Mount: {route.path} -> {route.name}")
+            else:
+                logger.info(f"Path: {route.path}")
+
+# Include routers in the correct order
+app.include_router(llm_chat_router)  # LLM routes first
 app.include_router(index)
 app.include_router(download)
 app.include_router(dynamic)
-app.include_router(read_text)
-logger.info("✅ Routers included successfully.")
+# ✅ Include routers
+# logger.info("🔌 Including routers...")
+# app.include_router(index)
+# app.include_router(download)
+# app.include_router(dynamic)
+# app.include_router(llm_chat_router)
+# logger.info("✅ Routers included successfully.")
 
 # ✅ Health check and other endpoints
 @app.get("/health")
