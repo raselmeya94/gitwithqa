@@ -112,7 +112,7 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from routers import download, dynamic, index, llm_chat_router
+from routers import download, dynamic, index, read_content, llm_chat_router
 
 from server_utils import limiter
 
@@ -170,9 +170,10 @@ async def debug_routes():
                 logger.info(f"Path: {route.path}")
 
 # Include routers in the correct order
-app.include_router(llm_chat_router)  # LLM routes first
 app.include_router(index)
 app.include_router(download)
+app.include_router(read_content)  # Read content routes first
+app.include_router(llm_chat_router)  # LLM routes first
 app.include_router(dynamic)
 # ✅ Include routers
 # logger.info("🔌 Including routers...")
