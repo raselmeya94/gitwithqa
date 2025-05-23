@@ -1,4 +1,6 @@
 [![Image](./docs/frontpage.png "GitWithQA main page")](https://gitwithqa.com)
+[![Image](./docs/chatui.png "GitWithQA main page")](https://gitwithqa.com)
+
 
 <!-- License -->
 <a href="https://github.com/raselmeya94/gitwithqa/blob/main/LICENSE">
