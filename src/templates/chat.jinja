@@ -33,11 +33,13 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div>
-                        <button onclick="handleLLMSubmit('{{ ingest_id }}')" class="px-6 py-2 bg-[#5dc3f5] border-[3px] border-gray-900 text-gray-900 rounded hover:-translate-y-px hover:-translate-x-px transition-transform">
-                        Submit
+                    
+                    <div class="relative w-fit flex-shrink-0 group">
+                        <div class="w-full h-full rounded bg-gray-800 translate-y-1 translate-x-1 absolute inset-0 z-10"></div>
+                        <button onclick="handleLLMSubmit('{{ ingest_id }}')"
+                                class="py-2.5 px-5 rounded group-hover:-translate-y-px group-hover:-translate-x-px ease-out duration-300 z-20 relative border-[3px] border-gray-900 font-medium bg-[#5dc3f5] tracking-wide text-base text-gray-900">
+                            Ask
                         </button>
-
                     </div>
 
                     <!-- Chat Response -->
