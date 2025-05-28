@@ -1,7 +1,6 @@
 import os
 from fnmatch import fnmatch
 from typing import Any
-# from .vectordb import embed_and_store
 import tiktoken
 
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
@@ -274,10 +273,6 @@ def create_file_content_string(files: list[dict[str, Any]]) -> str:
         output += f"File: {file['path']}\n"
         output += separator
         output += f"{file['content']}\n\n"
-    
-    # Embed the combined content string
-    # Embed the combined content string with an appropriate doc id
-    # embed_and_store(file_path="combined_files", file_content=output)
 
 
     return output

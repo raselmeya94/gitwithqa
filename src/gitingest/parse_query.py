@@ -29,7 +29,7 @@ def parse_url(url: str) -> dict[str, Any]:
     repo_name = path_parts[1]
     _id = str(uuid.uuid4())
     slug = f"{user_name}-{repo_name}"
-
+    
     parsed = {
         "user_name": user_name,
         "repo_name": repo_name,

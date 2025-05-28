@@ -1,7 +1,8 @@
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
 from starlette.templating import _TemplateResponse
-
+import re
+from llm_core.vectordb import embed_and_store
 from config import EXAMPLE_REPOS, MAX_DISPLAY_SIZE
 from gitingest.clone import CloneConfig, clone_repo
 from gitingest.ingest_from_query import ingest_from_query
@@ -68,6 +69,25 @@ async def process_query(
         )
         await clone_repo(clone_config)
         summary, tree, content = ingest_from_query(query)
+
+        collection_name = query.get("id")
+
+        # Split based on "File: <filename>" sections
+        reg_pattern = r"=+\s*\nFile:\s*(.+?)\s*\n=+"
+        parts = re.split(reg_pattern, content)
+        i = 1
+        while i < len(parts):
+            try:
+                file_path = parts[i].strip()
+                file_content = 48*"=" + f"\n\n{file_path}\n\n" +  48*"=" + parts[i + 1].strip()
+
+                # print(f"[INFO] Embedding and storing: {file_path} (length: {len(file_content)} chars)")
+                embed_and_store(collection_name, file_path=file_path, file_content=file_content)
+
+            except Exception as e:
+                print(f"[ERROR] Failed to store {file_path}: {e}")
+            i += 2
+                
         with open(f"{clone_config.local_path}.txt", "w") as f:
             f.write(tree + "\n" + content)
 

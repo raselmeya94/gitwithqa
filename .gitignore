@@ -173,3 +173,4 @@ Caddyfile
 
 # ignore default output directory
 tmp/*
+chroma_db/*

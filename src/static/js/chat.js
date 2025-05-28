@@ -33,10 +33,7 @@ window.handleLLMSubmit = function(ingestId) {
 
 async function sendToLLM(ingest_id, question, apiKey, model, callback) {
     try {
-        // Retrieve the context text for the given ingest_id (we don't show this content in the UI)
-        const contextText = await retrieve_context(ingest_id); 
-
-        if (!contextText) {
+        if (!ingest_id) {
             callback("Failed to retrieve context text. Please try again.");
             return;
         }
@@ -48,7 +45,7 @@ async function sendToLLM(ingest_id, question, apiKey, model, callback) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                input_text: contextText,  // Use context text here
+                ingest_id: ingest_id,  // Use context text here
                 question: question,
                 model: model,
                 api_key: apiKey
@@ -67,36 +64,5 @@ async function sendToLLM(ingest_id, question, apiKey, model, callback) {
     } catch (err) {
         console.error(err);
         callback("LLM call failed");
-    }
-}
-
-async function retrieve_context(ingestId) {
-    try {
-        // Fetch the content for the given ingest_id but don't display it
-        const retrieve_response = await fetch('/api/llm/v1/retrieve/get_content', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                ingest_id: ingestId
-            }),
-        });
-
-        const content = await retrieve_response.json();
-
-        if (content.text) {
-            // Only return the context text to be used in LLM query
-            return content.text; 
-        } else if (content.error) {
-            console.error(content.error); 
-            return null;
-        } else {
-            console.error("Failed to retrieve content from the provided ingest ID.");
-            return null;
-        }
-    } catch (err) {
-        console.error(err);
-        return null;  // Ensure we return null if there's an error
     }
 }
